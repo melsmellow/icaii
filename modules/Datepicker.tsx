@@ -43,6 +43,10 @@ export function DatePickerDemo() {
         .replace(" ", "-");
     }
 
+    let subjectValue =
+      answer === "Yes"
+        ? "Icaiii said yes, Yayyy :>>"
+        : "Icaii saidd no, meow meow meow meoww :<";
     try {
       const response = await fetch("/api/send-email", {
         method: "POST",
@@ -51,8 +55,7 @@ export function DatePickerDemo() {
         },
         body: JSON.stringify({
           to: "melcarlo.iguis@gmail.com",
-          subject:
-            `Icaii said ${answer}` + answer === "Yes" ? "Yaayyy :>>" : ":<<",
+          subject: subjectValue,
           html: `<p>When: ${formattedDate}</strong>!</p>`,
         }),
       });
@@ -69,17 +72,15 @@ export function DatePickerDemo() {
 
   if (displaySeeYou) {
     return (
-      <div style={{ padding: "2rem", fontSize: "20px" }}>
-        <Typist>
-          <p style={{ display: "inline" }}>Yayy, seee youuu Icaiii hehe</p>
-        </Typist>
+      <div style={{ padding: "2rem", fontSize: "24px" }}>
+        <p style={{ display: "inline" }}>Yayy, seee youuu Icaiii hehe</p>
         <Image src="/images/see-you.gif" alt="cat" width={250} height={250} />
       </div>
     );
   }
 
   return (
-    <div style={{ padding: "2rem", fontSize: "20px" }}>
+    <div style={{ padding: "2rem", fontSize: "24px" }}>
       <Typist>
         <p>Hello Icaii,</p>
         <Typist.Delay ms={1000} />
